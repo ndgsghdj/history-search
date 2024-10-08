@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Event Search</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>GCE-O Level History Event Search</h1>
+        
+        <!-- Search Form -->
+        <form action="/search" method="POST" class="search-form">
+            <input type="text" name="query" placeholder="Enter a keyword (e.g., 'moon landing')" required>
+            <button type="submit">Search</button>
+        </form>
+
+        <!-- Recent Events Section -->
+        <h2>Recent Events</h2>
+        {% if recent_events %}
+            <ul class="results-list">
+                {% for event in recent_events %}
+                    <li class="card">
+                        <h2>{{ event.Event }}</h2>
+                        <p><strong>Date:</strong> {{ event.Date }}</p>
+                        {% if event.Description %}
+                            <p>{{ event.Description }}</p>
+                        {% else %}
+                            <p><em>No description available.</em></p>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No recent events available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
