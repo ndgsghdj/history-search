@@ -46,6 +46,3 @@ def search():
 
     return render_template('results.html', query=query, events=filtered_events)
 
-if __name__ == '__main__':
-    app.run()
-
